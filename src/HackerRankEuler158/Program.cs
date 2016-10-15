@@ -1,14 +1,17 @@
-﻿using System;
-using System.Threading;
-
-namespace HackerRankEuler158
+﻿namespace HackerRankEuler158
 {
 	public class Program
 	{
+		// https://www.hackerrank.com/contests/projecteuler/challenges/euler158
 		public static void Main(string[] args)
 		{
-			var calculator = new CharsLexicographicallyAfterNeighborCalculator(26);
-			Console.WriteLine(calculator.GetNumberOfStrings(3, 1));
+			/* Input example
+			 * 2 2
+			 * 0 1
+			 * Result: 3
+			 */
+			var controller = new ProblemSolvingController();
+			controller.Solve();
 		}
 	}
 }
