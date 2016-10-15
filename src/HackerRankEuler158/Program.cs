@@ -1,49 +1,48 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using System.Threading;
 
 namespace HackerRankEuler158
 {
 	public class Program
 	{
 		const int N = 26;
-		static int[] orderedAlphabet;
+		static int[] _orderedAlphabet;
 
-		static void initAlphabet()
+		static void InitAlphabet()
 		{
-			orderedAlphabet = new int[N];
+			_orderedAlphabet = new int[N];
 			for (int i = 0; i < N; i++)
-				orderedAlphabet[i] = i + 1;
+				_orderedAlphabet[i] = i + 1;
+		}
+
+		static int pRecursive(int[] alphabet, int currentLength, int[] comparedCharacters, int m)
+		{
+			if (currentLength == 0)
+				return isRightNeighbourBiggerThanLeftExactlyGivenTimes(comparedCharacters, m) ? 1 : 0;
+
+			int sum = 0;
+			for (int i = 0; i <= alphabet.Length - currentLength; i++)
+			{
+				//Write(comparedCharacters); Thread.Sleep(5);
+				comparedCharacters[comparedCharacters.Length - currentLength] = alphabet[i];
+				sum = sum + pRecursive(alphabet, currentLength - 1, comparedCharacters, m);
+			}
+			return sum;
+		}
+
+		static void Write(int[] comparedCharacters)
+		{
+			string chars = string.Join(" ", comparedCharacters);
+			Console.WriteLine(chars);
 		}
 
 		static int p(int n, int m)
 		{
-			int sum = 0;
-
+			InitAlphabet();
 			int[] comparedCharacters = new int[n];
 
-			for (int i = 0; i < N; i++)
-			{
-				for (int j = 0; j < N; j++)
-				{
-					for (int k = 0; k < N; k++)
-					{
-						comparedCharacters[0] = i;
-						comparedCharacters[1] = j;
-						comparedCharacters[2] = k;
+			int sum = pRecursive(_orderedAlphabet, n, comparedCharacters, m);
 
-						if (!allDistinct(comparedCharacters))
-							continue;
-
-						if (isRightNeighbourBiggerThanLeftExactlyGivenTimes(comparedCharacters, m))
-						{
-							sum++;
-							Console.WriteLine($"BINGO {i} {j} {k}");
-						}
-					}
-				}
-			}
 			return sum;
 		}
 
@@ -62,12 +61,6 @@ namespace HackerRankEuler158
 			return times == howManyTimes;
 		}
 
-		static bool allDistinct(int[] comparedCharacters)
-		{
-			return comparedCharacters.Distinct().Count() == comparedCharacters.Count();
-		}
-
-		//8875
 		public static void Main(string[] args)
 		{
 			Console.WriteLine(p(3, 1));
