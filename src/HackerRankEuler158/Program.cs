@@ -8,14 +8,18 @@ namespace HackerRankEuler158
 	public class Program
 	{
 		const int N = 26;
+		static int[] orderedAlphabet;
+
+		static void initAlphabet()
+		{
+			orderedAlphabet = new int[N];
+			for (int i = 0; i < N; i++)
+				orderedAlphabet[i] = i + 1;
+		}
 
 		static int p(int n, int m)
 		{
 			int sum = 0;
-
-			int[] orderedAlphabet = new int[N];
-			for (int i = 0; i < N; i++)
-				orderedAlphabet[i] = i + 1;
 
 			int[] comparedCharacters = new int[n];
 
@@ -25,13 +29,12 @@ namespace HackerRankEuler158
 				{
 					for (int k = 0; k < N; k++)
 					{
-						if (i == j) continue;
-						if (j == k) continue;
-						if (i == k) continue;
-
 						comparedCharacters[0] = i;
 						comparedCharacters[1] = j;
 						comparedCharacters[2] = k;
+
+						if (!allDistinct(comparedCharacters))
+							continue;
 
 						if (isRightNeighbourBiggerThanLeftExactlyGivenTimes(comparedCharacters, m))
 						{
@@ -57,6 +60,11 @@ namespace HackerRankEuler158
 			}
 
 			return times == howManyTimes;
+		}
+
+		static bool allDistinct(int[] comparedCharacters)
+		{
+			return comparedCharacters.Distinct().Count() == comparedCharacters.Count();
 		}
 
 		//8875
