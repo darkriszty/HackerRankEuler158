@@ -15,37 +15,6 @@ namespace HackerRankEuler158
 
 			int[] orderedAlphabet = new int[N];
 			for (int i = 0; i < N; i++)
-				orderedAlphabet[i] = i+1;
-
-			int[] comparedCharacters = new int[n];
-
-			for (int i = 0; i < N; i++)
-			{
-				for (int j = 0; j < N; j++)
-				{
-					for (int k = 0; k < N; k++)
-					{
-						if (i == j) continue;
-						if (j == k) continue;
-						if (i == k) continue;
-
-						if ((j > i && j > k) || (j < i && j < k))
-						{
-							sum++;
-							Console.WriteLine($"BINGO {i} {j} {k}");
-						}
-					}
-				}
-			}
-			return sum;
-		}
-
-		static int p2(int n, int m)
-		{
-			int sum = 0;
-
-			int[] orderedAlphabet = new int[N];
-			for (int i = 0; i < N; i++)
 				orderedAlphabet[i] = i + 1;
 
 			int[] comparedCharacters = new int[n];
@@ -93,7 +62,7 @@ namespace HackerRankEuler158
 		//8875
 		public static void Main(string[] args)
 		{
-			Console.WriteLine(p2(3, 1));
+			Console.WriteLine(p(3, 1));
 		}
 	}
 }
