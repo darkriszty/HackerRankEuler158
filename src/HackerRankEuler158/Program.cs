@@ -1,4 +1,6 @@
-﻿namespace HackerRankEuler158
+﻿using System.Diagnostics;
+
+namespace HackerRankEuler158
 {
 	public class Program
 	{
@@ -10,8 +12,11 @@
 			 * 0 1
 			 * Result: 3
 			 */
+			Stopwatch sw = Stopwatch.StartNew();
 			var controller = new ProblemSolvingController();
 			controller.Solve();
+			sw.Stop();
+			System.Console.WriteLine($"Duration: {sw.Elapsed.TotalSeconds} seconds.");
 		}
 	}
 }
