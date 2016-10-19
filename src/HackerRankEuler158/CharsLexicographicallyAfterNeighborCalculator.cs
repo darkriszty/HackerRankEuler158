@@ -5,13 +5,18 @@ namespace HackerRankEuler158
 	public class CharsLexicographicallyAfterNeighborCalculator
 	{
 		private readonly int _alphabetSize;
+		private readonly IBiggerNeighborCountProvider _countProvider;
 		private int[] _orderedAlphabet;
 
-		public CharsLexicographicallyAfterNeighborCalculator(int alphabetSize)
+		public CharsLexicographicallyAfterNeighborCalculator(
+			int alphabetSize,
+			 IBiggerNeighborCountProvider countProvider)
 		{
 			if (alphabetSize < 2 || alphabetSize > 700) throw new ArgumentOutOfRangeException(nameof(alphabetSize));
+			if (countProvider == null) throw new ArgumentNullException(nameof(countProvider));
 
 			_alphabetSize = alphabetSize;
+			_countProvider = countProvider;
 		}
 
 		/// <summary>
@@ -38,10 +43,20 @@ namespace HackerRankEuler158
 			int sum = 0;
 			for (int i = 0; i <= alphabet.Length - currentLength; i++)
 			{
+				//Console.WriteLine(string.Join(" ", comparedCharacters));
+
 				comparedCharacters[comparedCharacters.Length - currentLength] = alphabet[i];
 				sum = sum + GetNumberOfStringsRecursive(alphabet, currentLength - 1, comparedCharacters, m);
 			}
+
 			return sum;
+		}
+
+		public bool IsRightNeighbourBiggerThanLeftExactlyGivenTimes(int[] comparedCharacters, int exactlyHowManyTimes)
+		{
+			int times = _countProvider.TotalRightNeighborsBiggerThanLeft(comparedCharacters);
+
+			return times == exactlyHowManyTimes;
 		}
 
 		private void InitAlphabet()
@@ -49,21 +64,6 @@ namespace HackerRankEuler158
 			_orderedAlphabet = new int[_alphabetSize];
 			for (int i = 0; i < _alphabetSize; i++)
 				_orderedAlphabet[i] = i + 1;
-		}
-
-		private bool IsRightNeighbourBiggerThanLeftExactlyGivenTimes(int[] comparedCharacters, int exactlyHowManyTimes)
-		{
-			int times = 0;
-			for (int i = 0; i < comparedCharacters.Length - 1; i++)
-			{
-				if (comparedCharacters[i + 1] > comparedCharacters[i])
-					times++;
-				// small optimization: no need to count further if it already exceeded the required exact amount
-				if (times > exactlyHowManyTimes)
-					break;
-			}
-
-			return times == exactlyHowManyTimes;
 		}
 	}
 }
