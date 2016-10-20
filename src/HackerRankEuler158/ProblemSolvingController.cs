@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 
 namespace HackerRankEuler158
 {
@@ -16,9 +17,11 @@ namespace HackerRankEuler158
 			);
 			var calculator2 = new SumMaxMValueCalculator(calculator1);
 
+			Stopwatch sw = Stopwatch.StartNew();
 			int sum = calculator2.GetValue(input);
-
+			sw.Stop();
 			Console.WriteLine(sum);
+			Console.WriteLine($"Duration: {sw.Elapsed.TotalSeconds} seconds.");
 		}
 	}
 }
