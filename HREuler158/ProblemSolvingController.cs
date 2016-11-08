@@ -11,9 +11,9 @@ namespace HackerRankEuler158
 
 			var calculator1 = new CharsLexicographicallyAfterNeighborCalculator(
 				input.AlphabetSize,
-				new BiggerNeighborCountProviderMemoryCacher(
+				//new BiggerNeighborCountProviderMemoryCacher(
 					new BiggerNeighborCountProvider()
-				)
+				//)
 			);
 			var calculator2 = new SumMaxMValueCalculator(calculator1);
 

@@ -12,7 +12,7 @@
 		public int GetValue(ProblemInputModel input)
 		{
 			int sum = 0;
-			for (int n = 1; n <= input.AlphabetSize; n++)
+			for (int n = input.AlphabetSize; n <= input.AlphabetSize; n++)
 			{
 				int maxForM = 0;
 				foreach (int m in input.NumberOfCharactersLexicographicallyComingAfterNeighbours)

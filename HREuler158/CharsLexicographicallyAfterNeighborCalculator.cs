@@ -43,7 +43,7 @@ namespace HackerRankEuler158
 			int sum = 0;
 			for (int i = 0; i <= alphabet.Length - currentLength; i++)
 			{
-				//Console.WriteLine(string.Join(" ", comparedCharacters));
+				Console.WriteLine(string.Join(" ", comparedCharacters));
 
 				comparedCharacters[comparedCharacters.Length - currentLength] = alphabet[i];
 				sum = sum + GetNumberOfStringsRecursive(alphabet, currentLength - 1, comparedCharacters, m);
