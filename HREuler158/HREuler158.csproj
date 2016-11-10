@@ -7,8 +7,8 @@
     <ProjectGuid>{FDD76156-D831-44ED-8774-9B3CF1475D90}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>HREuler158</RootNamespace>
-    <AssemblyName>HREuler158</AssemblyName>
+    <RootNamespace>HackerRankEuler158</RootNamespace>
+    <AssemblyName>HackerRankEuler158</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -44,9 +44,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BiggerNeighborCountProvider.cs" />
-    <Compile Include="BiggerNeighborCountProviderMemoryCacher.cs" />
+    <Compile Include="ExactBiggerRightNeighborInfoProvider.cs" />
     <Compile Include="CharsLexicographicallyAfterNeighborCalculator.cs" />
-    <Compile Include="IBiggerNeighborCountProvider.cs" />
     <Compile Include="InputReader.cs" />
     <Compile Include="ProblemInputModel.cs" />
     <Compile Include="ProblemSolvingController.cs" />

@@ -5,18 +5,18 @@ namespace HackerRankEuler158
 	public class CharsLexicographicallyAfterNeighborCalculator
 	{
 		private readonly int _alphabetSize;
-		private readonly IBiggerNeighborCountProvider _countProvider;
+		private readonly ExactBiggerRightNeighborInfoProvider _infoProvider;
 		private int[] _orderedAlphabet;
 
 		public CharsLexicographicallyAfterNeighborCalculator(
 			int alphabetSize,
-			 IBiggerNeighborCountProvider countProvider)
+			 ExactBiggerRightNeighborInfoProvider infoProvider)
 		{
 			if (alphabetSize < 2 || alphabetSize > 700) throw new ArgumentOutOfRangeException(nameof(alphabetSize));
-			if (countProvider == null) throw new ArgumentNullException(nameof(countProvider));
+			if (infoProvider == null) throw new ArgumentNullException(nameof(infoProvider));
 
 			_alphabetSize = alphabetSize;
-			_countProvider = countProvider;
+			_infoProvider = infoProvider;
 		}
 
 		/// <summary>
@@ -38,25 +38,21 @@ namespace HackerRankEuler158
 		private int GetNumberOfStringsRecursive(int[] alphabet, int currentLength, int[] comparedCharacters, int m)
 		{
 			if (currentLength == 0)
-				return IsRightNeighbourBiggerThanLeftExactlyGivenTimes(comparedCharacters, m) ? 1 : 0;
+			{
+				bool isExactCount = _infoProvider.IsRightNeighbourBiggerThanLeftExactlyGivenTimes(comparedCharacters, m);
+				return isExactCount ? 1 : 0;
+			}
 
 			int sum = 0;
 			for (int i = 0; i <= alphabet.Length - currentLength; i++)
 			{
-				Console.WriteLine(string.Join(" ", comparedCharacters));
+				//Console.WriteLine(string.Join(" ", comparedCharacters));
 
 				comparedCharacters[comparedCharacters.Length - currentLength] = alphabet[i];
 				sum = sum + GetNumberOfStringsRecursive(alphabet, currentLength - 1, comparedCharacters, m);
 			}
 
 			return sum;
-		}
-
-		public bool IsRightNeighbourBiggerThanLeftExactlyGivenTimes(int[] comparedCharacters, int exactlyHowManyTimes)
-		{
-			int times = _countProvider.TotalRightNeighborsBiggerThanLeft(comparedCharacters);
-
-			return times == exactlyHowManyTimes;
 		}
 
 		private void InitAlphabet()

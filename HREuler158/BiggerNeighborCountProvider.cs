@@ -1,6 +1,6 @@
 ﻿namespace HackerRankEuler158
 {
-	public class BiggerNeighborCountProvider : IBiggerNeighborCountProvider
+	public class BiggerNeighborCountProvider
 	{
 		public int TotalRightNeighborsBiggerThanLeft(int[] comparedCharacters)
 		{
