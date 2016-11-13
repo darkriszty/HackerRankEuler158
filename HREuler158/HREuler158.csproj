@@ -46,6 +46,7 @@
     <Compile Include="BiggerNeighborCountProvider.cs" />
     <Compile Include="ExactBiggerRightNeighborInfoProvider.cs" />
     <Compile Include="CharsLexicographicallyAfterNeighborCalculator.cs" />
+    <Compile Include="Math.cs" />
     <Compile Include="InputReader.cs" />
     <Compile Include="ProblemInputModel.cs" />
     <Compile Include="ProblemSolvingController.cs" />
