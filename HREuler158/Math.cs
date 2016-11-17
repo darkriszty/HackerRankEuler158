@@ -4,7 +4,7 @@ namespace HackerRankEuler158
 {
 	public static class Math
 	{
-		private static Dictionary<int, uint> _factorials = new Dictionary<int, uint>() { { 1, 1U } };
+		private static Dictionary<int, BigNumber> _factorials = new Dictionary<int, BigNumber>() { { 1, new BigNumber(1) } };
 
 		public static uint Combination(int n, int k)
 		{
@@ -25,25 +25,25 @@ namespace HackerRankEuler158
 
 			int nAndKDifference = n - k;
 			bool nominatorAndsAtDifference = nAndKDifference > k;
-			int lastNominator = nominatorAndsAtDifference ? nAndKDifference : k;
+			BigNumber lastNominator = new BigNumber(nominatorAndsAtDifference ? nAndKDifference : k);
 
-			uint nominator = 1;
-			for (int i = n; i > lastNominator; i--)
-				nominator = nominator * (uint)i;
+			BigNumber nominator = new BigNumber(1);
+			for (BigNumber i = new BigNumber(n); i > lastNominator; i--)
+				nominator = nominator * i;
 
-			uint denominator = nominatorAndsAtDifference
+			BigNumber denominator = nominatorAndsAtDifference
 				? Factorial(k)
 				: Factorial(nAndKDifference);
 
 			return nominator / denominator;
 		}
 
-		public static uint Factorial(int x)
+		public static BigNumber Factorial(int x)
 		{
 			if (_factorials.ContainsKey(x))
 				return _factorials[x];
 
-			uint fact = (uint)x * Factorial(x - 1);
+			BigNumber fact = new BigNumber(x) * Factorial(x - 1);
 
 			_factorials[x] = fact;
 			return fact;
