@@ -189,12 +189,10 @@ namespace HREuler158.Tests
 		}
 
 		[TestMethod]
-		[Ignore]
 		public void Multiply_SixDigitNumbers_CorrectMultiplication()
 		{
 			BigNumber left = new BigNumber(987654);
 			BigNumber right = new BigNumber(987654);
-			// multiplication is not fast enough
 			BigNumber result = left * right;
 
 			Assert.AreEqual("975460423716", result.Value);

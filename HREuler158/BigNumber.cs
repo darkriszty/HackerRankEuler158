@@ -83,18 +83,48 @@ namespace HackerRankEuler158
 			return !(left == right);
 		}
 
-		public static BigNumber operator * (BigNumber left, BigNumber right)
+		public static implicit operator BigNumber(int i)
 		{
-			BigNumber smaller = left;
-			BigNumber bigger = right;
-			if (smaller > bigger)
-				Swap(ref smaller, ref bigger);
+			return new BigNumber(i);
+		}
 
-			BigNumber productSum = new BigNumber(0);
-			for (BigNumber i = new BigNumber(0); i < smaller; i++)
-				productSum += bigger;
+		public static BigNumber operator *(BigNumber left, BigNumber right)
+		{
+			if (left < 10 && right < 10)
+				return new BigNumber(int.Parse(left.Value) * int.Parse(right.Value));
 
-			return productSum;
+			List<BigNumber> numbersToAdd = new List<BigNumber>();
+
+			string lVal = left.Value;
+			string rVal = right.Value;
+
+			int outerIterationCount = 0;
+			for (int i = rVal.Length - 1; i >= 0; i--)
+			{
+				byte[] resultOfLoop = new byte[lVal.Length + 1 + outerIterationCount];
+				
+				int carry = 0;
+				int innerIterationCount = 0;
+				for (int j = lVal.Length - 1; j >= 0; j--)
+				{
+					int multiplyResult = byte.Parse(lVal[j].ToString()) * byte.Parse(rVal[i].ToString());
+					int multiplyResultWithCarry = multiplyResult + carry;
+					int oneResultDigit = multiplyResultWithCarry % 10;
+					resultOfLoop[resultOfLoop.Length - 1 - outerIterationCount - innerIterationCount] = (byte)oneResultDigit;
+
+					carry = multiplyResultWithCarry / 10;
+					innerIterationCount++;
+				}
+				if (carry > 0)
+					resultOfLoop[resultOfLoop.Length - 1 - outerIterationCount - innerIterationCount] = (byte)carry;
+				outerIterationCount++;
+				numbersToAdd.Add(new BigNumber(resultOfLoop));
+			}
+
+			BigNumber result = new BigNumber(0);
+			foreach (var b in numbersToAdd)
+				result += b;
+			return result;
 		}
 
 		public override bool Equals(object obj)
