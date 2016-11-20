@@ -22,20 +22,20 @@ namespace HackerRankEuler158
 
 			if (k > n)
 				return 0;
-
+			
 			int nAndKDifference = n - k;
 			bool nominatorAndsAtDifference = nAndKDifference > k;
-			BigNumber lastNominator = new BigNumber(nominatorAndsAtDifference ? nAndKDifference : k);
+			int lastNominator = nominatorAndsAtDifference ? nAndKDifference : k;
 
 			BigNumber nominator = new BigNumber(1);
-			for (BigNumber i = new BigNumber(n); i > lastNominator; i--)
+			for (int i = n; i > lastNominator; i--)
 				nominator = nominator * i;
 
 			BigNumber denominator = nominatorAndsAtDifference
 				? Factorial(k)
 				: Factorial(nAndKDifference);
 
-			return nominator / denominator;
+			return 0;// nominator / denominator;
 		}
 
 		public static BigNumber Factorial(int x)

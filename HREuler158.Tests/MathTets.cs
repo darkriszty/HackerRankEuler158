@@ -10,9 +10,9 @@ namespace HREuler158.Tests
 		[TestMethod]
 		public void Factorial_10_3628800()
 		{
-			uint fact = HackerRankEuler158.Math.Factorial(10);
+			BigNumber fact = HackerRankEuler158.Math.Factorial(10);
 
-			Assert.AreEqual(3628800U, fact);
+			Assert.AreEqual("3628800", fact);
 		}
 
 		[TestMethod]
