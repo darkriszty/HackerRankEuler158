@@ -44,7 +44,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BiggerNeighborCountProvider.cs" />
-    <Compile Include="BigNumber.cs" />
+    <Compile Include="BigNumber\BigNumber.cs" />
+    <Compile Include="BigNumber\Addition.cs" />
+    <Compile Include="BigNumber\Comparison.cs" />
+    <Compile Include="BigNumber\Multiplication.cs" />
+    <Compile Include="BigNumber\Operators.cs" />
+    <Compile Include="Utils.cs" />
     <Compile Include="ExactBiggerRightNeighborInfoProvider.cs" />
     <Compile Include="CharsLexicographicallyAfterNeighborCalculator.cs" />
     <Compile Include="Math.cs" />
