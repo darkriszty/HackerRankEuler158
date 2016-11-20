@@ -7,6 +7,11 @@
 			return left.Add(right);
 		}
 
+		public static BigNumber operator - (BigNumber left, BigNumber right)
+		{
+			return left.Subtract(right);
+		}
+
 		public static BigNumber operator * (BigNumber left, BigNumber right)
 		{
 			return left.Multiply(right);

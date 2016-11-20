@@ -49,6 +49,7 @@
     <Compile Include="BigNumber\Comparison.cs" />
     <Compile Include="BigNumber\Multiplication.cs" />
     <Compile Include="BigNumber\Operators.cs" />
+    <Compile Include="BigNumber\Subtraction.cs" />
     <Compile Include="Utils.cs" />
     <Compile Include="ExactBiggerRightNeighborInfoProvider.cs" />
     <Compile Include="CharsLexicographicallyAfterNeighborCalculator.cs" />
