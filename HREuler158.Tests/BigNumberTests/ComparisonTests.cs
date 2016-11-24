@@ -77,5 +77,105 @@ namespace HREuler158.Tests.BigNumberTests
 			Assert.AreEqual(false, leftLessThanRight);
 			Assert.AreEqual(false, leftGreaterThanRight);
 		}
+
+		[TestMethod]
+		public void LessAndGreater_RightNegative_LeftGTRight()
+		{
+			BigNumber left = new BigNumber(4);
+			BigNumber right = new BigNumber(-5);
+			bool leftLessThanRight = left < right;
+			bool leftGreaterThanRight = left > right;
+
+			Assert.AreEqual(false, leftLessThanRight);
+			Assert.AreEqual(true, leftGreaterThanRight);
+		}
+
+		[TestMethod]
+		public void LessAndGreater_LeftNegative_LeftLTRight()
+		{
+			BigNumber left = new BigNumber(-4);
+			BigNumber right = new BigNumber(5);
+			bool leftLessThanRight = left < right;
+			bool leftGreaterThanRight = left > right;
+
+			Assert.AreEqual(true, leftLessThanRight);
+			Assert.AreEqual(false, leftGreaterThanRight);
+		}
+
+		[TestMethod]
+		public void LessAndGreater_BothNegativeSameLength_LeftGTRight()
+		{
+			BigNumber left = new BigNumber(-4156);
+			BigNumber right = new BigNumber(-5267);
+			bool leftLessThanRight = left < right;
+			bool leftGreaterThanRight = left > right;
+
+			Assert.AreEqual(false, leftLessThanRight);
+			Assert.AreEqual(true, leftGreaterThanRight);
+		}
+
+		[TestMethod]
+		public void LessAndGreater_BothNegativeRightLongerThanLeft_LeftGTRight()
+		{
+			BigNumber left = new BigNumber(-4156);
+			BigNumber right = new BigNumber(-526789);
+			bool leftLessThanRight = left < right;
+			bool leftGreaterThanRight = left > right;
+
+			Assert.AreEqual(false, leftLessThanRight);
+			Assert.AreEqual(true, leftGreaterThanRight);
+		}
+
+		[TestMethod]
+		public void LessAndGreater_BothNegativeAndEqual_LeftEQRight()
+		{
+			BigNumber left = new BigNumber(-8855);
+			BigNumber right = new BigNumber(-8855);
+			bool leftLessThanRight = left < right;
+			bool leftGreaterThanRight = left > right;
+
+			Assert.AreEqual(false, leftLessThanRight);
+			Assert.AreEqual(false, leftGreaterThanRight);
+		}
+
+		[TestMethod]
+		public void EqualsOperator_NonEqualLefthNegative_False()
+		{
+			BigNumber left = new BigNumber(-4);
+			BigNumber right = new BigNumber(5);
+			Assert.IsFalse(left == right);
+		}
+
+		[TestMethod]
+		public void EqualsOperator_NonEqualRighthNegative_False()
+		{
+			BigNumber left = new BigNumber(4);
+			BigNumber right = new BigNumber(-5);
+			Assert.IsFalse(left == right);
+		}
+
+		[TestMethod]
+		public void EqualsOperator_NonEqualBothNegative_False()
+		{
+			BigNumber left = new BigNumber(-4);
+			BigNumber right = new BigNumber(-5);
+			Assert.IsFalse(left == right);
+		}
+
+		[TestMethod]
+		public void EqualsOperator_EqualBothNegative_True()
+		{
+			BigNumber left = new BigNumber(-224);
+			BigNumber right = new BigNumber(-224);
+			Assert.IsTrue(left == right);
+		}
+
+		[TestMethod]
+		public void EqualsOperator_EqualBothPositive_True()
+		{
+			BigNumber left = new BigNumber("1224");
+			BigNumber right = new BigNumber("1224");
+			Assert.IsTrue(left == right);
+		}
 	}
 }
