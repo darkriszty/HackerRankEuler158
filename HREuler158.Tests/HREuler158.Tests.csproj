@@ -54,6 +54,7 @@
   <ItemGroup>
     <Compile Include="BigNumberTests\AdditionTests.cs" />
     <Compile Include="BigNumberTests\ComparisonTests.cs" />
+    <Compile Include="BigNumberTests\InstantiationAndPropertyTests.cs" />
     <Compile Include="BigNumberTests\MultiplicationTests.cs" />
     <Compile Include="BigNumberTests\SubtractionTests.cs" />
     <Compile Include="MathTets.cs" />

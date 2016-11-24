@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace HackerRankEuler158
@@ -6,10 +7,20 @@ namespace HackerRankEuler158
 	public partial class BigNumber
 	{
 		private IEnumerable<byte> _innerValue;
+		private bool _isNegative;
 
 		public string Value
 		{
-			get { return string.Join(string.Empty, _innerValue).TrimStart('0'); }
+			get
+			{
+				string sign = _isNegative ? "-" : string.Empty;
+				return string.Concat(sign, string.Join(string.Empty, _innerValue).TrimStart('0'));
+			}
+		}
+
+		internal IEnumerable<byte> ValueAsBytes
+		{
+			get { return _innerValue; }
 		}
 
 		public BigNumber(int number)
@@ -25,16 +36,21 @@ namespace HackerRankEuler158
 		public BigNumber(BigNumber other)
 		{
 			_innerValue = other._innerValue;
+			_isNegative = other._isNegative;
 		}
 
-		public BigNumber(byte[] values)
+		public BigNumber(byte[] values, bool isNegative = false)
 		{
 			_innerValue = values;
+			_isNegative = isNegative;
 		}
 
 		private void InitValue(string number)
 		{
-			_innerValue = number.Select(x => byte.Parse(x.ToString()));
+			if (string.IsNullOrWhiteSpace(number)) throw new ArgumentException(nameof(number));
+			_isNegative = number.StartsWith("-");
+			int skip = _isNegative ? 1 : 0;
+			_innerValue = number.Skip(skip).Select(x => byte.Parse(x.ToString()));
 		}
 
 		private void InitValue(byte[] numbers)
