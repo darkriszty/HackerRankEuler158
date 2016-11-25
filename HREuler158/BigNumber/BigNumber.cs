@@ -14,7 +14,10 @@ namespace HackerRankEuler158
 			get
 			{
 				string sign = _isNegative ? "-" : string.Empty;
-				return string.Concat(sign, string.Join(string.Empty, _innerValue).TrimStart('0'));
+				string result = string.Concat(sign, string.Join(string.Empty, _innerValue).TrimStart('0'));
+				return string.IsNullOrWhiteSpace(result)
+					? "0"
+					: result;
 			}
 		}
 
@@ -81,6 +84,11 @@ namespace HackerRankEuler158
 		public override int GetHashCode()
 		{
 			return Value.GetHashCode();
+		}
+
+		public override string ToString()
+		{
+			return Value;
 		}
 	}
 }
