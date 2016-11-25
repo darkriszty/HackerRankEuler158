@@ -107,6 +107,46 @@ namespace HREuler158.Tests.BigNumberTests
 		}
 
 		[TestMethod]
+		public void Add_SecondNegative_ResultPositiveWithOneCarry()
+		{
+			BigNumber left = new BigNumber(123);
+			BigNumber right = new BigNumber(-32);
+			BigNumber result = left + right;
+
+			Assert.AreEqual("91", result.Value);
+		}
+
+		[TestMethod]
+		public void Add_SecondNegative_ResultPositiveWithTwoCarry()
+		{
+			BigNumber left = new BigNumber(123);
+			BigNumber right = new BigNumber(-34);
+			BigNumber result = left + right;
+
+			Assert.AreEqual("89", result.Value);
+		}
+
+		[TestMethod]
+		public void Add_FirstNegative_ResultPositiveWithOneCarry()
+		{
+			BigNumber left = new BigNumber(-123);
+			BigNumber right = new BigNumber(32);
+			BigNumber result = left + right;
+
+			Assert.AreEqual("-91", result.Value);
+		}
+
+		[TestMethod]
+		public void Add_FirstNegative_ResultPositiveWithTwoCarry()
+		{
+			BigNumber left = new BigNumber(-123);
+			BigNumber right = new BigNumber(34);
+			BigNumber result = left + right;
+
+			Assert.AreEqual("-89", result.Value);
+		}
+
+		[TestMethod]
 		public void Add_BothNegative_ResultNegative()
 		{
 			BigNumber left = new BigNumber(-98);
