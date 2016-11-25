@@ -23,7 +23,7 @@ namespace HREuler158.Tests.BigNumberTests
 			BigNumber right = new BigNumber(5);
 			BigNumber result = left - right;
 
-			Assert.AreEqual("-1", result.Value);
+			Assert.AreEqual("-2", result.Value);
 		}
 
 		[TestMethod]
@@ -57,13 +57,13 @@ namespace HREuler158.Tests.BigNumberTests
 		}
 
 		[TestMethod]
-		public void Subtract_FirstNumberLongerWithCarry_CorrectSubtraction()
+		public void Subtract_FirstNumberWithoutCarry_CorrectSubtraction()
 		{
 			BigNumber left = new BigNumber(999);
 			BigNumber right = new BigNumber(88);
 			BigNumber result = left - right;
 
-			Assert.AreEqual("111", result.Value);
+			Assert.AreEqual("911", result.Value);
 		}
 
 		[TestMethod]
