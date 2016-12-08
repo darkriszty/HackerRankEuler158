@@ -5,9 +5,9 @@ namespace HackerRankEuler158
 {
 	public class InputReader
 	{
-		public ProblemInputModel ReadInput(TextReader reader)
+		public InputModel ReadInput(TextReader reader)
 		{
-			ProblemInputModel result = null;
+			InputModel result = null;
 			while (result == null)
 			{
 				result = ReadInputInner(reader);
@@ -15,7 +15,7 @@ namespace HackerRankEuler158
 			return result;
 		}
 
-		private ProblemInputModel ReadInputInner(TextReader reader)
+		private InputModel ReadInputInner(TextReader reader)
 		{
 			// read N and q from the first line
 			string[] firstLine = reader.ReadLine().Split(' ');
@@ -32,7 +32,7 @@ namespace HackerRankEuler158
 
 			int[] mValues = secondLine.Select(str => int.Parse(str)).ToArray();
 
-			return new ProblemInputModel
+			return new InputModel
 			{
 				AlphabetSize = alphabetSize,
 				NumberOfQueries = numberOfQueries,

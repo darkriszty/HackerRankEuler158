@@ -1,12 +1,23 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Numerics;
 
 namespace HackerRankEuler158
 {
-	public static class Math
+	public static class QuickMath
 	{
-		private static Dictionary<int, BigNumber> _factorials = new Dictionary<int, BigNumber>() { { 1, new BigNumber(1) } };
+		private static Dictionary<int, BigInteger> _factorials = new Dictionary<int, BigInteger>() { { 0, new BigInteger(1) } };
 
-		public static uint Combination(int n, int k)
+		/// <summary>
+		/// Gets the Eulerian number from Euler's triangle for column = 2.
+		/// </summary>
+		public static double EulerianTriangleColumnTwoNumber(int n)
+		{
+			// formula from http://mathworld.wolfram.com/EulerianNumber.html: Special cases are given by < n; 1 > = 2 ^ n - n - 1
+			return Math.Pow(2, n) - n - 1;
+		}
+
+		public static BigInteger Combination(int n, int k)
 		{
 			//     n!     
 			// ---------- 
@@ -27,23 +38,23 @@ namespace HackerRankEuler158
 			bool nominatorAndsAtDifference = nAndKDifference > k;
 			int lastNominator = nominatorAndsAtDifference ? nAndKDifference : k;
 
-			BigNumber nominator = new BigNumber(1);
+			BigInteger nominator = new BigInteger(1);
 			for (int i = n; i > lastNominator; i--)
 				nominator = nominator * i;
 
-			BigNumber denominator = nominatorAndsAtDifference
+			BigInteger denominator = nominatorAndsAtDifference
 				? Factorial(k)
 				: Factorial(nAndKDifference);
 
-			return 0;// nominator / denominator;
+			return nominator / denominator;
 		}
 
-		public static BigNumber Factorial(int x)
+		public static BigInteger Factorial(int x)
 		{
 			if (_factorials.ContainsKey(x))
 				return _factorials[x];
 
-			BigNumber fact = new BigNumber(x) * Factorial(x - 1);
+			BigInteger fact = new BigInteger(x) * Factorial(x - 1);
 
 			_factorials[x] = fact;
 			return fact;

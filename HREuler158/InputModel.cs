@@ -1,6 +1,6 @@
 ﻿namespace HackerRankEuler158
 {
-	public class ProblemInputModel
+	public class InputModel
 	{
 		public int AlphabetSize { get; set; }
 

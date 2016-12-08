@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Diagnostics;
+using System.Numerics;
 
 namespace HackerRankEuler158
 {
@@ -9,16 +10,23 @@ namespace HackerRankEuler158
 		{
 			var input = new InputReader().ReadInput(Console.In);
 
-			var calculator1 = new CharsLexicographicallyAfterNeighborCalculator(
-				input.AlphabetSize,
-				new ExactBiggerRightNeighborInfoProvider(
-					new BiggerNeighborCountProvider()
-				)
-			);
-			var calculator2 = new SumMaxMValueCalculator(calculator1);
-
 			Stopwatch sw = Stopwatch.StartNew();
-			int sum = calculator2.GetValue(input);
+
+			BigInteger sum = 0;
+			for (int i = 0; i < input.NumberOfQueries; i++)
+			{
+				BigInteger max = 0;
+				for (int n = 1; n < input.AlphabetSize; n++)
+				{
+					int mi = input.NumberOfCharactersLexicographicallyComingAfterNeighbours[i];
+					BigInteger p = Calculator.P(n, mi);
+					if (p > max)
+						max = p;
+				}
+
+				sum += max;
+			}
+
 			sw.Stop();
 			Console.WriteLine(sum);
 			Console.WriteLine($"Duration: {sw.Elapsed.TotalSeconds} seconds.");
