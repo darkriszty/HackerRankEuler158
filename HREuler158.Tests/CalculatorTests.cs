@@ -1,22 +1,18 @@
 ﻿using HackerRankEuler158;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using NUnit.Framework;
 
 namespace HREuler158.Tests
 {
-	[TestClass]
+	[TestFixture]
 	public class CalculatorTests
 	{
-		[TestMethod]
-		public void P_1And0_2()
+		[TestCase(1, 0, ExpectedResult = "2")]
+		[TestCase(2, 0, ExpectedResult = "1")]
+		[TestCase(2, 1, ExpectedResult = "1")]
+		[TestCase(3, 27, ExpectedResult = "10400")]
+		public string P_ReturnsCorrectValue(int n, int m)
 		{
-			var p = Calculator.P(1, 0);
-
-			Assert.AreEqual(2, p);
+			return Calculator.P(n, m).ToString();
 		}
 	}
 }
