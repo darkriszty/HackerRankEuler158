@@ -22,7 +22,7 @@ namespace HackerRankEuler158
 		public static BigInteger EulerianTriangleNumber(int n, int m)
 		{
 			if (m == 0) return 1;
-			if (n == m) return 0;
+			if (m >= n) return 0;
 
 			string key = $"{n}|{m}";
 			if (_eularians.ContainsKey(key))
