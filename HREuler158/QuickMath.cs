@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Numerics;
 
 namespace HackerRankEuler158
@@ -7,14 +6,31 @@ namespace HackerRankEuler158
 	public static class QuickMath
 	{
 		private static Dictionary<int, BigInteger> _factorials = new Dictionary<int, BigInteger>() { { 0, new BigInteger(1) } };
+		private static Dictionary<string, BigInteger> _eularians = new Dictionary<string, BigInteger>()
+		{
+			{ "1|0", new BigInteger(1) },
+			{ "2|0", new BigInteger(1) },
+			{ "2|1", new BigInteger(1) },
+			{ "3|0", new BigInteger(1) },
+			{ "3|1", new BigInteger(4) },
+			{ "3|2", new BigInteger(1) },
+		};
 
 		/// <summary>
-		/// Gets the Eulerian number from Euler's triangle for column = 2.
+		/// Gets the Eulerian number from Euler's triangle.
 		/// </summary>
-		public static double EulerianTriangleColumnTwoNumber(int n)
+		public static BigInteger EulerianTriangleNumber(int n, int m)
 		{
-			// formula from http://mathworld.wolfram.com/EulerianNumber.html: Special cases are given by < n; 1 > = 2 ^ n - n - 1
-			return Math.Pow(2, n) - n - 1;
+			if (m == 0) return 1;
+			if (n == m) return 0;
+
+			string key = $"{n}|{m}";
+			if (_eularians.ContainsKey(key))
+				return _eularians[key];
+
+			var result = (n-m)*EulerianTriangleNumber(n-1, m-1) + (m+1)*EulerianTriangleNumber(n-1, m);
+			_eularians[key] = result;
+			return result;
 		}
 
 		public static BigInteger Combination(int n, int k)
