@@ -10,7 +10,7 @@
 			 * 0 1
 			 * Result: 3
 			 */
-			var controller = new ProblemSolvingController();
+			var controller = new Controller();
 			controller.Solve();
 		}
 	}

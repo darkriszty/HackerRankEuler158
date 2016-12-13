@@ -48,7 +48,7 @@
     <Compile Include="InputReader.cs" />
     <Compile Include="Calculator.cs" />
     <Compile Include="InputModel.cs" />
-    <Compile Include="ProblemSolvingController.cs" />
+    <Compile Include="Controller.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

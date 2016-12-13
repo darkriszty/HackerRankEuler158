@@ -4,7 +4,7 @@ using System.Numerics;
 
 namespace HackerRankEuler158
 {
-	public class ProblemSolvingController
+	public class Controller
 	{
 		public void Solve()
 		{
@@ -13,17 +13,17 @@ namespace HackerRankEuler158
 			Stopwatch sw = Stopwatch.StartNew();
 
 			BigInteger sum = 0;
-			for (int i = 0; i < input.NumberOfQueries; i++)
+
+			for (int n = 1; n <= input.AlphabetSize; n++)
 			{
 				BigInteger max = 0;
-				for (int n = 1; n < input.AlphabetSize; n++)
+				for (int i = 0; i < input.NumberOfQueries; i++)
 				{
 					int mi = input.NumberOfCharactersLexicographicallyComingAfterNeighbours[i];
-					BigInteger p = Calculator.P(n, mi);
+					BigInteger p = Calculator.MaxPValue(input.AlphabetSize, n, mi);
 					if (p > max)
 						max = p;
 				}
-
 				sum += max;
 			}
 
