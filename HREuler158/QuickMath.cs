@@ -8,6 +8,7 @@ namespace HackerRankEuler158
 		private static Dictionary<int, BigInteger> _factorials = new Dictionary<int, BigInteger>() { { 0, new BigInteger(1) } };
 		private static Dictionary<string, BigInteger> _eularians = new Dictionary<string, BigInteger>()
 		{
+			{ "0|0", new BigInteger(1) },
 			{ "1|0", new BigInteger(1) },
 			{ "2|0", new BigInteger(1) },
 			{ "2|1", new BigInteger(1) },
@@ -21,8 +22,12 @@ namespace HackerRankEuler158
 		/// </summary>
 		public static BigInteger EulerianTriangleNumber(int n, int m)
 		{
-			if (m == 0) return 1;
+			// triangle diagonal and above
 			if (m >= n) return 0;
+			// just below triangle diagonal
+			if (n == m + 1) return 1;
+			// first column
+			if (m == 0) return 1;
 
 			string key = $"{n}|{m}";
 			if (_eularians.ContainsKey(key))
