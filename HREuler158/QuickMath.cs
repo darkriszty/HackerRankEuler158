@@ -5,6 +5,7 @@ namespace HackerRankEuler158
 {
 	public static class QuickMath
 	{
+		private static Dictionary<string, BigInteger> _comb = new Dictionary<string, BigInteger>();
 		private static Dictionary<int, BigInteger> _factorials = new Dictionary<int, BigInteger>() { { 0, new BigInteger(1) } };
 		private static Dictionary<string, BigInteger> _eularians = new Dictionary<string, BigInteger>()
 		{
@@ -54,7 +55,11 @@ namespace HackerRankEuler158
 
 			if (k > n)
 				return 0;
-			
+
+			string key = $"{n}|{k}";
+			if (_comb.ContainsKey(key))
+				return _comb[key];
+
 			int nAndKDifference = n - k;
 			bool nominatorAndsAtDifference = nAndKDifference > k;
 			int lastNominator = nominatorAndsAtDifference ? nAndKDifference : k;
@@ -67,7 +72,9 @@ namespace HackerRankEuler158
 				? Factorial(k)
 				: Factorial(nAndKDifference);
 
-			return nominator / denominator;
+			BigInteger result = nominator / denominator;
+			_comb[key] = result;
+			return result;
 		}
 
 		public static BigInteger Factorial(int x)
